@@ -11,18 +11,13 @@ public class LoopTask7 {
         int m;
         int n;
 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Введите натуральное число m");
-        m = valid(sc);
-
-        System.out.println("Введите натуральное число n > m");
-        n = valid(sc);
+        m = valid("Введите натуральное число m");
+        n = valid("Введите натуральное число n > m");
 
         if (n > m) {
             for (int i = m; i <= n; i++) {
                 for (int j = m + 1; j < n; j++) {
-                    if (i % j == 0) {
+                    if (i % j == 0 && i != j){
                         System.out.println("Делитель числа " + i + ": " + j);
                     }
                 }
@@ -32,9 +27,12 @@ public class LoopTask7 {
         }
     }
 
-    public static int valid(Scanner sc) {
+    public static int valid(String message) {
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.println(message);
         while (!sc.hasNextInt()) {
-            sc.nextLine();
+            sc.next();
             System.out.println("Введенные данные не являются натуральным числом, повторите ввод");
         }
         return sc.nextInt();
